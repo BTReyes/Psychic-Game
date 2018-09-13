@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Psychic-Game Beverly T. Reyes</title>
+    <link rel="stylesheet" href="C:\Users\Beverly\Desktop\BOOTCAMP\Psychic-Game\assets\css\reset.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h2>The Psychic Game</h2>
+    <br>
+    <p>Guess which letter I’m thinking of…</p>
+    <p>Wins: </p>
+    <p>Losses: </p>
+    <p>Guesses Left: </p>
+    <p>Your Guesses so Far:</p>
+    <br>
+    <input type="text" size="40" onkeydown="myFunction(event)">
+    <p id="demo"></p>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var wins = 0;
+        var losses = 0;
+        var guessCounter = 9;
+        var userGuess = "";
+
+        //Game routing
+
+        // Start of Game: 
+        //check if "guessCounter" = 9, then create a "randomLetter" which user will have to guess 
+
+        //This section generates a single random letter -->
+        function randomLetter() {
+            var chars = "abcdefghiklmnopqrstuvwxyz";
+            var string_length = 1;
+            var randomLetter = '';
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomLetter = chars.substring(rnum, rnum + 1);
+            document.randform.randomfield.value = randomLetter;
+
+            console.log(chars)
+            console.log(string_length)
+            console.log(randomLetter)
+            console.log(rnum)
+            console.log("Wins: " + wins)
+            console.log(document.randform.randomfield.value)
+        }
+
+        //for loop. length is 9, each wrong answer reduces "guessCounter" by 1, if "guessCounter" = 0, 
+        //player loses and goes to new game routine 
+
+        for (var i = 9; i > 0; i--) {
+            // add keyboard event & put what letter user enters into the variable userGuess
+
+            function myFunction(event) {
+                var userGuess = event.key;
+                document.getElementById("demo").innerHTML = "The pressed key was: " + userGuess;
+
+                console.log(userGuess)
+                console.log(i)
+            }
+        }
+
+        // If your pick matched the computer's pick you let them know.
+        if (userGuess == randomLetter) {
+            wins++
+            console.log("Wins: " + wins) 
+
+            console.log("hello?")
+        }
+        console.log("hello2?")
+
+        // For each wrong guess, print the wrong letter guessed followed by a comma
+    </script>
+
+    <!-- -->
+
+    <!-- need to change random letter generator from on click to start of new game, maybe when Guesses =9-->
+    <form name="randform">
+        <input type="button" value="Generate Random Letter" onClick="randomLetter();">&nbsp;
+        <input type="text" name="randomfield" value="">
+    </form>
+
+</body>
+
+</html>
